@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `apuesta` (
   `id_apuesta` int(11) NOT NULL,
   `monto` decimal(10,2) NOT NULL,
-  `por_quien` enum('local','visitante') NOT NULL,
+  `por_quien` enum('local','visitante','empate') NOT NULL,
   `fk_id_resultado` int(11) DEFAULT NULL,
   `fk_id_usuario` int(11) DEFAULT NULL,
   `fk_id_partido` int(11) DEFAULT NULL
