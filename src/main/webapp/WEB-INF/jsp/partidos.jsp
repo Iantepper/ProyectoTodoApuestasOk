@@ -16,7 +16,7 @@
                     <div class="equipo-local">${partido.local}</div>
                     <div class="equipo-visitante">${partido.visitante}</div>
                     <div class="fecha">${partido.fecha}</div>
-                    <a class="btn btn-success" href="/ApuestaTodook/Apuesta?id=${partido.idParttido}">Apostar</a>
+                    <a class="btn btn-success" href="/ApuestaTodook/Apuesta?id=${partido.idPartido}">Apostar</a>
                 </div>
             </c:forEach>
         </div>

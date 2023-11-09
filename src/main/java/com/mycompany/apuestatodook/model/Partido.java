@@ -5,15 +5,29 @@ public class Partido {
     private String local;
     private String visitante;
     private String fecha;
-    private int idParttido;
+    private int idPartido;
+    private Resultado resultado;
 
-    public Partido(String local, String visitante, String fecha, int idParttido) {
+    public Resultado getResultado() {
+        return resultado;
+    }
+    
+    public void setResultado(Resultado resultado) {
+    this.resultado = resultado;
+    }
+
+    public Partido(String local, String visitante, String fecha, int idPartido) {
         this.local = local;
         this.visitante = visitante;
         this.fecha = fecha;
-        this.idParttido = idParttido;
+        this.idPartido = idPartido;
     }
-    
+     public Partido(String local, String visitante, String fecha, Resultado resultado) {
+        this.local = local;
+        this.visitante = visitante;
+        this.fecha = fecha;
+        this.resultado = resultado;
+    }
     
 
     public void setLocal(String local) {
@@ -28,8 +42,8 @@ public class Partido {
         this.fecha = fecha;
     }
 
-    public void setIdParttido(int idParttido) {
-        this.idParttido = idParttido;
+    public void setIdPartido(int idPartido) {
+        this.idPartido = idPartido;
     }
 
     public String getLocal() {
@@ -44,8 +58,8 @@ public class Partido {
         return fecha;
     }
 
-    public int getIdParttido() {
-        return idParttido;
+    public int getIdPartido() {
+        return idPartido;
     }
     
     

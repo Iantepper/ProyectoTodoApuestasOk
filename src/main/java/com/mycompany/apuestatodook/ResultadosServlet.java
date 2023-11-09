@@ -1,14 +1,14 @@
 package com.mycompany.apuestatodook;
 
 
-import com.mycompany.apuestatodook.model.Resultado;
+import com.mycompany.apuestatodook.model.Partido;
+import com.mycompany.apuestatodook.model.PartidoDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import com.mycompany.apuestatodook.model.ResultadoDAO;
 import java.util.List;
 
 @WebServlet(name = "SvResultados", urlPatterns = {"/Resultados"})
@@ -17,13 +17,12 @@ public class ResultadosServlet extends HttpServlet {
 
 @Override
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    ResultadoDAO resultadoDAO = new ResultadoDAO();
+    PartidoDAO partidoDAO = new PartidoDAO();
     String destino;
      
-    List<Resultado> resultados = resultadoDAO.getAllResultados();
+    List<Partido> partidosConResultado = partidoDAO.getAllPartidosConResultado();
  
-    request.setAttribute("resultados", resultados);
-
+    request.setAttribute("partidosConResultado", partidosConResultado);
 
     destino = "WEB-INF/jsp/resultados.jsp";
 

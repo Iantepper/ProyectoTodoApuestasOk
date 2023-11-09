@@ -7,6 +7,7 @@ public class Apuesta {
     private String por_quien;
     private int idUsuario;
     private int idPartido;
+    private int estado;
 
     public Apuesta(int monto, String por_quien, int idUsuario, int idPartido) {
         this.monto = monto;
@@ -15,6 +16,14 @@ public class Apuesta {
         this.idPartido = idPartido;
     }
 
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+    
     public int getIdApuesta() {
         return idApuesta;
     }

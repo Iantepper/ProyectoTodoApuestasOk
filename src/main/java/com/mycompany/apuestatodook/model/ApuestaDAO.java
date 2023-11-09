@@ -40,7 +40,24 @@ public class ApuestaDAO {
     }
     
     return apuestas;
-}
+    }
+    
+    public String getResultadoPorPartido(int idPartido) {
+    String query = "SELECT ganador FROM resultado WHERE id_partido = ?";
+    try (Connection con = ConnectionPool.getInstance().getConnection();
+         PreparedStatement preparedStatement = con.prepareStatement(query)) {
+        preparedStatement.setInt(1, idPartido);
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getString("ganador");
+            }
+        }
+    } catch (SQLException ex) {
+        throw new RuntimeException(ex);
+    }
+    return null;
+    }
+
 
     private Apuesta rsRowToApuesta(ResultSet rs) throws SQLException {
         int monto = rs.getInt("monto");
@@ -49,5 +66,17 @@ public class ApuestaDAO {
         int idPartido = rs.getInt("fk_id_partido");
 
         return new Apuesta(monto, por_quien, idUsuario, idPartido);
+    }
+    
+    public void updateEstado(Apuesta apuesta) {
+    String query = "UPDATE apuesta SET estado = ? WHERE id_apuesta = ?";
+    try (Connection con = ConnectionPool.getInstance().getConnection();
+         PreparedStatement preparedStatement = con.prepareStatement(query)) {
+        preparedStatement.setString(1, String.valueOf(apuesta.getEstado()));
+        preparedStatement.setInt(2, apuesta.getIdApuesta());
+        preparedStatement.executeUpdate();
+    } catch (SQLException ex) {
+        throw new RuntimeException(ex);
+    }
     }
 }

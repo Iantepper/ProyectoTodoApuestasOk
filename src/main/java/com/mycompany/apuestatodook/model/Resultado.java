@@ -23,6 +23,10 @@ public class Resultado {
         this.ganador = ganador;
         this.idPartido = idPartido;
     }
+    
+    public Resultado(String ganador) {
+        this.ganador = ganador;
+    }
 
     public int getIdResultado() {
         return idResultado;

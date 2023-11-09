@@ -12,7 +12,7 @@
                 <div class="form-outline mb-4">
                     <input type="text" id="form2Example11" class="form-control" placeholder="Monto" name="monto"/>
                     <input type="hidden" name="por" value="local">
-                    <input type="hidden" name="idPartido" value="${partido.idParttido}">
+                    <input type="hidden" name="idPartido" value="${partido.idPartido}">
                 </div>
                 <input class="btn btn-success" type="submit" name="Enviar datos" value="Apostar">
             </form>
@@ -33,7 +33,7 @@
                 <div class="form-outline mb-4">
                     <input type="text" id="form2Example11" class="form-control" placeholder="Monto" name="monto"/>
                     <input type="hidden" name="por" value="visitante">
-                    <input type="hidden" name="idPartido" value="${partido.idParttido}">
+                    <input type="hidden" name="idPartido" value="${partido.idPartido}">
                 </div>
                 <input class="btn btn-success" type="submit" name="Enviar datos" value="Apostar">
             </form>
