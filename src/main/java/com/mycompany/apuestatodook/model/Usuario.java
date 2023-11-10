@@ -8,7 +8,22 @@ public class Usuario{
     private String usuario;
     private String contrasenia;
     private double dinero;
+    private String tipo;
 
+    public Usuario(int IDusuario, String usuario, String contrasenia, double dinero, String tipo) {
+        this.IDusuario = IDusuario;
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;
+        this.dinero = dinero;
+        this.tipo = tipo;
+    }
+    
+    
+
+    public String getTipo() {
+        return tipo;
+    }
+    
     public Usuario(int IDusuario, String usuario, String contrasenia) {
         this.usuario = usuario;
         this.contrasenia = contrasenia;

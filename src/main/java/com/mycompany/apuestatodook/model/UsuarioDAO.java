@@ -29,9 +29,10 @@ public class UsuarioDAO {
     }
  
     public Usuario autenticar(String usuario, String contrasenia) {
-    String query = "SELECT * FROM usuario WHERE usuario = ? AND contrasenia = ?";
+    String query = "SELECT id_usuario, usuario, contrasenia, dinero, tipo FROM usuario WHERE usuario = ? AND contrasenia = ?";
     Usuario validado = null;
-    try (Connection con = ConnectionPool.getInstance().getConnection(); PreparedStatement preparedStatement = con.prepareStatement(query)) {
+    try (Connection con = ConnectionPool.getInstance().getConnection(); 
+         PreparedStatement preparedStatement = con.prepareStatement(query)) {
         preparedStatement.setString(1, usuario);
         preparedStatement.setString(2, contrasenia);
         try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -45,14 +46,18 @@ public class UsuarioDAO {
     }
     return validado;
 }
+
+private Usuario rsRowToUsuario(ResultSet rs) throws SQLException {
+    int IDusuario = rs.getInt("id_usuario");
+    String usuario = rs.getString("usuario");
+    String contrasenia = rs.getString("contrasenia");
+    
  
-  private Usuario rsRowToUsuario(ResultSet rs) throws SQLException {
-     
-       int IDusuario = rs.getInt(1);
-       String usuario = rs.getString(2);
-       String contrasenia = rs.getString(3);
-       return new Usuario(IDusuario,usuario, contrasenia);
-    }
+    double dinero = rs.getDouble("dinero");
+    String tipo = rs.getString("tipo");
+
+    return new Usuario(IDusuario, usuario, contrasenia, dinero, tipo);
+}
 
     public int add(String usuario, String contrasenia) {
         String query = "INSERT INTO usuario (usuario, contrasenia) VALUES (?, ?)";
@@ -111,4 +116,5 @@ public class UsuarioDAO {
         }
     }
 }
+
 

@@ -123,5 +123,34 @@ public class ApuestaDAO {
     }
     return apuestasConResultado;
     }
+    public List<Apuesta> getApuestasConResultadoPorUsuario(int idUsuario) {
+    List<Apuesta> apuestasConResultado = new ArrayList<>();
+    String query = "SELECT apuesta.por_quien, apuesta.monto, partido.local, partido.visitante, partido.fecha " +
+            "FROM apuesta " +
+            "JOIN resultado ON resultado.fk_id_partido = apuesta.fk_id_partido " +
+            "JOIN partido ON partido.id_partido = apuesta.fk_id_partido " +
+            "WHERE apuesta.fk_id_usuario = ?";  // Agregar condición por fk_id_usuario
+
+    try (Connection con = ConnectionPool.getInstance().getConnection();
+         PreparedStatement ps = con.prepareStatement(query)) {
+        ps.setInt(1, idUsuario);  // Establecer el valor del parámetro
+
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                String por_quien = rs.getString("por_quien");
+                int monto = rs.getInt("monto");
+                String local = rs.getString("local");
+                String visitante = rs.getString("visitante");
+                String fecha = rs.getString("fecha");
+
+                Apuesta apuesta = new Apuesta(local, visitante, fecha, monto, por_quien);
+                apuestasConResultado.add(apuesta);
+            }
+        }
+    } catch (SQLException ex) {
+        throw new RuntimeException(ex);
+    }
+    return apuestasConResultado;
+}
 
 }

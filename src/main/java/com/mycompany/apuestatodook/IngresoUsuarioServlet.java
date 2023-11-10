@@ -33,6 +33,7 @@ public class IngresoUsuarioServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setMaxInactiveInterval(3600);
             session.setAttribute("userLogueado", user);
+            session.setAttribute("tipoUsuario", user.getTipo());
            if (haciaDondeIba != null) {
                 response.sendRedirect(request.getContextPath() + haciaDondeIba);
             } else {

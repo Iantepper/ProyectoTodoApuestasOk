@@ -8,6 +8,9 @@
 </style>
         
 <h1 id="bets">Apuestas</h1>
+<c:if test="${esAdmin}">
+    <h1 id="bets">${mensajeAdmin}</h1>
+</c:if>
 
 <div class="row">
     <div class="col-md-12">
